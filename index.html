@@ -1,0 +1,71 @@
+<!-- Suraksha+ Women Safety Web App with Firebase Backend -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+    <title>Suraksha+ | Women Safety Web</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+        <!-- Firebase CDN -->
+          <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+            
+              <style>
+                  body { font-family: Arial, sans-serif; background:#fdecef; margin:0; }
+                      header { background:#e91e63; color:#fff; padding:15px; text-align:center; font-size:22px; }
+                          .container { text-align:center; padding:30px; }
+                              button { background:red; color:white; border:none; padding:30px 50px; font-size:24px; border-radius:50%; cursor:pointer; }
+                                  button:hover { background:darkred; }
+                                      .status { margin-top:20px; background:#fff; padding:15px; border-radius:8px; }
+                                        </style>
+                                        </head>
+                                        <body>
+                                        
+                                        <header>🚨 Suraksha+ Women Safety Web App</header>
+                                        
+                                        <div class="container">
+                                          <h2>One Tap SOS for Emergency</h2>
+                                            <button onclick="sendSOS()">SOS</button>
+                                              <div class="status" id="status">Status: Waiting for SOS...</div>
+                                              </div>
+                                              
+                                              <script>
+                                                // 🔥 Firebase Configuration (replace with your keys)
+                                                  const firebaseConfig = {
+                                                      apiKey: "BAAQAku8zr3MVJwYZyanJmWcqHd5ukTsMOeBZKt7IJb8sG1tliWr60cSnweuwTBA5epdsPmyGly6AgTuihNtKcg",
+                                                          authDomain: "women safety.firebaseapp.com",
+                                                              projectId: "women-safety-d68f1",
+                                                                  storageBucket: "women safety.appspot.com",
+                                                                      messagingSenderId: "645911968736",
+                                                                          appId: "YOUR_APP_ID"
+                                                                            };
+                                                                            
+                                                                              firebase.initializeApp(firebaseConfig);
+                                                                                const db = firebase.firestore();
+                                                                                
+                                                                                  function sendSOS() {
+                                                                                      if (navigator.geolocation) {
+                                                                                            navigator.geolocation.getCurrentPosition((position) => {
+                                                                                                    const lat = position.coords.latitude;
+                                                                                                            const lon = position.coords.longitude;
+                                                                                                            
+                                                                                                                    db.collection("sos_alerts").add({
+                                                                                                                              latitude: lat,
+                                                                                                                                        longitude: lon,
+                                                                                                                                                  timestamp: new Date()
+                                                                                                                                                          });
+                                                                                                                                                          
+                                                                                                                                                                  document.getElementById("status").innerHTML =
+                                                                                                                                                                            `🚨 SOS Sent!<br>Latitude: ${lat}<br>Longitude: ${lon}`;
+                                                                                                                                                                            
+                                                                                                                                                                                    alert("SOS Alert Stored in Firebase!");
+                                                                                                                                                                                          }, () => alert("Location permission denied"));
+                                                                                                                                                                                              } else {
+                                                                                                                                                                                                    alert("Geolocation not supported");
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                          }
+                                                                                                                                                                                                          </script>
+                                                                                                                                                                                                          
+                                                                                                                                                                                                          </body>
+                                                                                                                                                                                                          </html>
+                                                                                                                                                                                                          -->
